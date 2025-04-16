@@ -1,11 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import Button from "../Button/Button";
+import { LanguageContext } from "../../main";
 
 const LanguageSwitcher = () => {
+  const { getLang } = useContext(LanguageContext);
+
   return (
     <div>
-      <Button type="button" text="en" />
-      <Button type="button" text="uk" />
+      <Button onClick={() => getLang("en")} type="button">
+        en
+      </Button>
+      <Button onClick={() => getLang("uk")} type="button">
+        uk
+      </Button>
     </div>
   );
 };

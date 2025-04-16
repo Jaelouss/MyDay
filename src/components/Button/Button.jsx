@@ -1,10 +1,16 @@
-import React from "react";
+import React, { Children } from "react";
 
-const Button = ({ type, css, text = "", label = "" }) => {
+const Button = ({ type, css, children, label = "", onClick }) => {
   return (
     <>
-      <button type={type} className={css} aria-label={label} title={label}>
-        {text}
+      <button
+        onClick={onClick}
+        type={type}
+        className={css}
+        aria-label={label}
+        title={label}
+      >
+        {children}
       </button>
     </>
   );

@@ -1,8 +1,9 @@
 import React from "react";
 import Header from "../Header/Header";
-import Main from "../Main/Main";
+import Home from "../../pages/Home/Home";
 import Aside from "../Aside/Aside";
 import s from "./App.module.css";
+import RoutesComponent from "../Routes/RoutesComponent";
 
 const App = () => {
   return (
@@ -10,7 +11,7 @@ const App = () => {
       <Header />
       <main className={s.main}>
         <Aside />
-        <Main />
+        <RoutesComponent />
       </main>
     </>
   );
