@@ -1,16 +1,30 @@
-import React, { useContext } from "react";
+import React from "react";
 import Button from "../Button/Button";
-import { LanguageContext } from "../../main";
+import { useLangStore } from "../../store/langStore";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const LanguageSwitcher = () => {
-  const { getLang } = useContext(LanguageContext);
+  const { lang, setLang } = useLangStore();
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const handleChangeLang = (newLang) => {
+    if (newLang === lang) return;
+
+    setLang(newLang);
+
+    const segments = location.pathname.split("/");
+    segments[1] = newLang;
+    const newPath = segments.join("/") || `/${newLang}/`;
+    navigate(newPath, { replace: true });
+  };
 
   return (
     <div>
-      <Button onClick={() => getLang("en")} type="button">
+      <Button onClick={() => handleChangeLang("en")} type="button">
         en
       </Button>
-      <Button onClick={() => getLang("uk")} type="button">
+      <Button onClick={() => handleChangeLang("uk")} type="button">
         uk
       </Button>
     </div>

@@ -1,11 +1,10 @@
-import React, { useContext } from "react";
+import React from "react";
 import { NavLink } from "react-router-dom";
 import s from "./Navigation.module.css";
-import { LanguageContext } from "../../main";
+import { useLangStore } from "../../store/langStore";
 
 const Navigation = () => {
-  const { lang } = useContext(LanguageContext) || { lang: "uk" };
-  console.log("lang:", lang);
+  const { lang } = useLangStore();
 
   return (
     <nav className={s.nav}>
@@ -24,7 +23,7 @@ const Navigation = () => {
       <NavLink className={s.navlink} to={`/${lang}/planner`}>
         Planner
       </NavLink>
-      <NavLink className={s.navlink} to="*">
+      <NavLink className={s.navlink} to={`/${lang}/*`}>
         404Page
       </NavLink>
     </nav>
