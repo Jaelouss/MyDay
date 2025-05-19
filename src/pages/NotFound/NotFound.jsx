@@ -1,9 +1,10 @@
 import React from "react";
 
-// import { useTranslate } from "../../translate/useTranslate";
+import { useTranslate } from "../../translate/useTranslate";
 
 const NotFound = () => {
-  return <div>qweqw</div>;
+  const t = useTranslate();
+  return <div>{t("notFound", "title")}</div>;
 };
 
 export default NotFound;
