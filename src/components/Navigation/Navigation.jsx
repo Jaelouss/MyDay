@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import s from "./Navigation.module.css";
-import { useLangStore } from "../../store/langStore";
+import { useLangStore } from "../../store/language/langStore";
 
 const Navigation = () => {
   const { lang } = useLangStore();

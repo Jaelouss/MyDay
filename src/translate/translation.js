@@ -4,7 +4,7 @@ export const translate = {
       title: 'Welcome in the "My Day" application',
       text: "Choose an application for further work",
     },
-    todoFullModal: {
+    taskItemFullModal: {
       title: "Task",
       task: "Description",
 
@@ -13,7 +13,7 @@ export const translate = {
       buttonConfirm: "Confirm",
       buttonCancel: "Cancel",
     },
-    addTodo: {
+    addTask: {
       title: "Task",
       task: "Description",
       buttonAdd: "Add task",
@@ -27,7 +27,7 @@ export const translate = {
       title: 'Вітаємо в застосунку "My Day"',
       text: "Оберіть застосунок для подальшої роботи",
     },
-    todoFullModal: {
+    taskItemFullModal: {
       title: "Задача",
       task: "Опис",
       buttonEdit: "Змінити",
@@ -35,7 +35,7 @@ export const translate = {
       buttonConfirm: "Підтвердити",
       buttonCancel: "Скасувати",
     },
-    addTodo: {
+    addTask: {
       title: "Задача",
       task: "Опис",
       buttonAdd: "Додати задачу",

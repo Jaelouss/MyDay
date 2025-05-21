@@ -3,8 +3,9 @@ import Header from "../Header/Header";
 import Aside from "../Aside/Aside";
 import s from "./App.module.css";
 import RoutesComponent from "../Routes/RoutesComponent";
-import { useLangStore } from "../../store/langStore";
+
 import { useLocation, useNavigate } from "react-router-dom";
+import { useLangStore } from "../../store/language/langStore";
 
 const App = () => {
   const { lang, setLang } = useLangStore();

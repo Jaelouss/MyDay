@@ -1,7 +1,8 @@
 import React from "react";
 import Button from "../Button/Button";
-import { useLangStore } from "../../store/langStore";
+
 import { useLocation, useNavigate } from "react-router-dom";
+import { useLangStore } from "../../store/language/langStore";
 
 const LanguageSwitcher = () => {
   const { lang, setLang } = useLangStore();

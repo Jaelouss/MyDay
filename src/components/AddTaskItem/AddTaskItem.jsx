@@ -1,14 +1,19 @@
 import React, { useId } from "react";
-import s from "./AddTodo.module.css";
+import s from "./AddTaskItem.module.css";
 import { useAddTodos } from "../../store/todos/todosSelectors";
 import { useTranslate } from "../../translate/useTranslate";
+import { useAddContact } from "../../store/contacts/contactsSelectors";
 
-export const AddTodo = () => {
+export const AddTaskItem = ({ type }) => {
   const translate = useTranslate();
-  const t = (arg) => translate("addTodo", arg);
-  const addTodo = useAddTodos();
+  const t = (arg) => translate("addTask", arg);
+
   const title = useId();
   const text = useId();
+
+  const addTodo = useAddTodos();
+
+  const addContact = useAddContact();
 
   const saveTask = (e) => {
     e.preventDefault();
@@ -22,7 +27,16 @@ export const AddTodo = () => {
       title: e.target.elements.title.value.trim(),
       text: e.target.elements.text.value.trim(),
     };
-    addTodo(task);
+    switch (type) {
+      case "todo":
+        addTodo(task);
+        break;
+      case "contacts":
+        addContact(task);
+        break;
+      default:
+        return;
+    }
     e.target.reset();
   };
 

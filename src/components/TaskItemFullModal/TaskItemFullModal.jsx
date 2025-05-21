@@ -1,57 +1,63 @@
 import { useState } from "react";
 import { useDeleteTodos, useEditTodos } from "../../store/todos/todosSelectors";
 import { useTranslate } from "../../translate/useTranslate";
-import s from "./TodoFullModal.module.css";
+import s from "./TaskItemFullModal.module.css";
+import {
+  useDeleteContact,
+  useEditContact,
+} from "../../store/contacts/contactsSelectors";
 
-export const TodoFullModal = ({ todo, setModalState }) => {
-  const [title, setTitle] = useState(todo.title);
-  const [text, setText] = useState(todo.text);
+export const TaskItemFullModal = ({ type, task, setModalState }) => {
+  const [title, setTitle] = useState(task.title);
+  const [text, setText] = useState(task.text);
   const [editMode, setEditMode] = useState(false);
+
+  const deleteContact = useDeleteContact();
+  const editContact = useEditContact();
 
   const deleteTodo = useDeleteTodos();
   const editTodo = useEditTodos();
 
   const translate = useTranslate();
-  const t = (arg) => translate("todoFullModal", arg);
-
-  const closeModal = () => {
-    setModalState(false);
-  };
+  const t = (arg) => translate("taskItemFullModal", arg);
 
   const confirmEdit = (e) => {
     e.preventDefault();
-    const newTodo = {
+    const newTask = {
       title: e.target.elements.title.value,
       text: e.target.elements.description.value,
     };
-
-    editTodo(todo.id, newTodo);
+    switch (type) {
+      case "todo":
+        editTodo(task.id, newTask);
+        break;
+      case "contacts":
+        editContact(task.id, newTask);
+        break;
+      default:
+        break;
+    }
     setEditMode(false);
   };
 
-  const hadleChangeTitle = (e) => {
-    setTitle(e.target.value);
-  };
-
-  const hadleChangeText = (e) => {
-    setText(e.target.value);
-  };
-
-  const editTask = () => {
-    setEditMode(true);
-  };
-  const closeEditMode = () => {
-    setEditMode(false);
-  };
   const deleteTask = (id) => {
-    deleteTodo(id);
+    switch (type) {
+      case "todo":
+        deleteTodo(id);
+        break;
+      case "contacts":
+        deleteContact(id);
+        break;
+      default:
+        break;
+    }
   };
   return (
     <form onSubmit={confirmEdit}>
       <div>
         <label htmlFor="title">{t("title")}</label>
         <input
-          onChange={hadleChangeTitle}
+          onChange={(e) => setTitle(e.target.value)}
           name="title"
           id="title"
           type="text"
@@ -60,7 +66,7 @@ export const TodoFullModal = ({ todo, setModalState }) => {
         />
         <label htmlFor="description">{t("task")}</label>
         <textarea
-          onChange={hadleChangeText}
+          onChange={(e) => setText(e.target.value)}
           name="description"
           id="description"
           type="text"
@@ -72,22 +78,24 @@ export const TodoFullModal = ({ todo, setModalState }) => {
       <div>
         {!editMode && (
           <div>
-            <button className={s.button_del} onClick={() => editTask()}>
+            <button className={s.button_del} onClick={() => setEditMode(true)}>
               {t("buttonEdit")}
             </button>
             <button
               className={s.button_del}
-              onClick={() => deleteTask(todo.id)}
+              onClick={() => deleteTask(task.id)}
             >
               {t("buttonDelete")}
             </button>
-            <button onClick={closeModal}>x</button>
+            <button onClick={() => setModalState(false)}>x</button>
           </div>
         )}
         {editMode && (
           <div>
             <button type="submit">{t("buttonConfirm")}</button>
-            <button onClick={closeEditMode}>{t("buttonCancel")}</button>
+            <button onClick={() => setEditMode(false)}>
+              {t("buttonCancel")}
+            </button>
           </div>
         )}
       </div>

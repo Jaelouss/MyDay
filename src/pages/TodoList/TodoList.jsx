@@ -1,10 +1,10 @@
 import { useState } from "react";
-import s from "./ToDo.module.css";
-import Button from "../../components/Button/Button";
+// import s from "./ToDo.module.css";
+
 import { useTodos } from "../../store/todos/todosSelectors";
-import { TodoFullModal } from "../../components/TodoFullModal/TodoFullModal";
-import { TodoItem } from "../../components/TodoItem/TodoItem";
-import { AddTodo } from "../../components/AddTodo/AddTodo";
+import { TaskItemFullModal } from "../../components/TaskItemFullModal/TaskItemFullModal";
+import { TaskItem } from "../../components/TaskItem/TaskItem";
+import { AddTaskItem } from "../../components/AddTaskItem/AddTaskItem";
 
 const TodoList = () => {
   const todos = useTodos();
@@ -15,14 +15,15 @@ const TodoList = () => {
   return (
     <section>
       {modalState && (
-        <TodoFullModal todo={taskToEdit} setModalState={setModalState} />
+        <TaskItemFullModal task={taskToEdit} setModalState={setModalState} />
       )}
-      <AddTodo />
+      <AddTaskItem type={"todo"} />
       <ul>
         {todos.length > 0 &&
           todos.map((task) => (
             <li key={task.id}>
-              <TodoItem
+              <TaskItem
+                type={"todo"}
                 task={task}
                 setModalState={setModalState}
                 setTaskToEdit={setTaskToEdit}
