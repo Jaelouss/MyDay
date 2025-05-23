@@ -1,6 +1,3 @@
-import React from "react";
-import Button from "../Button/Button";
-
 import { useLocation, useNavigate } from "react-router-dom";
 import { useLangStore } from "../../store/language/langStore";
 
@@ -22,12 +19,12 @@ const LanguageSwitcher = () => {
 
   return (
     <div>
-      <Button onClick={() => handleChangeLang("en")} type="button">
+      <button onClick={() => handleChangeLang("en")} type="button">
         en
-      </Button>
-      <Button onClick={() => handleChangeLang("uk")} type="button">
+      </button>
+      <button onClick={() => handleChangeLang("uk")} type="button">
         uk
-      </Button>
+      </button>
     </div>
   );
 };
