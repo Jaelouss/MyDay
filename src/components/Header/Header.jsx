@@ -5,13 +5,10 @@ import LanguageSwitcher from "../LanguageSwitcher/LanguageSwitcher";
 import s from "./Header.module.css";
 
 const Header = () => {
-  const isMobile = false;
-
   return (
     <header className={s.header}>
       <Logo />
       <LanguageSwitcher />
-      {isMobile && <MenuMobile />}
     </header>
   );
 };

@@ -4,10 +4,14 @@ import {
   useDeleteTodos,
   useToggleTodos,
 } from "../../store/todos/todosSelectors";
+import { useDeleteContact } from "../../store/contacts/contactsSelectors";
+import { useDeleteBookmark } from "../../store/bookmarks/bookmarksSelectors";
 
 export const TaskItem = ({ type, task, setModalState, setTaskToEdit }) => {
   const toggleTodo = useToggleTodos();
   const deleteTodo = useDeleteTodos();
+  const deleteContact = useDeleteContact();
+  const deleteBookmark = useDeleteBookmark();
 
   const handleChange = (id) => {
     toggleTodo(id);
@@ -19,7 +23,20 @@ export const TaskItem = ({ type, task, setModalState, setTaskToEdit }) => {
   };
 
   const deleteTask = (id) => {
-    deleteTodo(id);
+    switch (type) {
+      case "todo":
+        deleteTodo(id);
+        break;
+      case "contacts":
+        deleteContact(id);
+        break;
+      case "bookmarks":
+        deleteBookmark(id);
+        break;
+      default:
+        console.log(type);
+        break;
+    }
   };
 
   return (
@@ -40,7 +57,16 @@ export const TaskItem = ({ type, task, setModalState, setTaskToEdit }) => {
         )}
         <div>
           <h2>{task.title}</h2>
-          {type !== "todo" && <p>{task.text}</p>}
+          {type === "contacts" && <p>{task.number}</p>}
+          {type === "bookmarks" && (
+            <a
+              onClick={(e) => e.stopPropagation()}
+              target="_blank"
+              href={task.url}
+            >
+              {task.url}
+            </a>
+          )}
         </div>
         <button
           className={s.button_del}

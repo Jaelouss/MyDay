@@ -1,5 +1,5 @@
 import { useState } from "react";
-// import s from "./ToDo.module.css";
+// import s from "./TodoList.module.css";
 
 import { useTodos } from "../../store/todos/todosSelectors";
 import { TaskItemFullModal } from "../../components/TaskItemFullModal/TaskItemFullModal";
@@ -8,7 +8,6 @@ import { AddTaskItem } from "../../components/AddTaskItem/AddTaskItem";
 
 const TodoList = () => {
   const todos = useTodos();
-
   const [modalState, setModalState] = useState(false);
   const [taskToEdit, setTaskToEdit] = useState(null);
 

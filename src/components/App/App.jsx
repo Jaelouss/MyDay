@@ -11,6 +11,7 @@ const App = () => {
   const { lang, setLang } = useLangStore();
   const location = useLocation();
   const navigate = useNavigate();
+
   const initialLang = lang || "en";
 
   useEffect(() => {

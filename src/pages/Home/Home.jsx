@@ -1,10 +1,10 @@
 import React from "react";
-import s from "./Home.module.css";
+// import s from "./Home.module.css";
 import RoutesComponent from "../../components/Routes/RoutesComponent";
 import { useTranslate } from "../../translate/useTranslate";
 
 const Home = () => {
-  const translate = useTranslate();
+  const { translate } = useTranslate();
   const t = (arg) => translate("home", arg);
   return (
     <section>

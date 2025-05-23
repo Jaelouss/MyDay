@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { TaskItemFullModal } from "../../components/TaskItemFullModal/TaskItemFullModal";
 import { useContacts } from "../../store/contacts/contactsSelectors";
 import { AddTaskItem } from "../../components/AddTaskItem/AddTaskItem";
+import { TaskItem } from "../../components/TaskItem/TaskItem";
 
 const Contacts = () => {
   const contacts = useContacts();

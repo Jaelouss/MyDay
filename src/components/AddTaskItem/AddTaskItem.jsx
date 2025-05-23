@@ -3,17 +3,18 @@ import s from "./AddTaskItem.module.css";
 import { useAddTodos } from "../../store/todos/todosSelectors";
 import { useTranslate } from "../../translate/useTranslate";
 import { useAddContact } from "../../store/contacts/contactsSelectors";
+import { useAddBookmark } from "../../store/bookmarks/bookmarksSelectors";
 
 export const AddTaskItem = ({ type }) => {
-  const translate = useTranslate();
-  const t = (arg) => translate("addTask", arg);
+  const { translate, currentType } = useTranslate();
+  const t = (arg) => translate(currentType(type), arg);
 
   const title = useId();
   const text = useId();
 
   const addTodo = useAddTodos();
-
   const addContact = useAddContact();
+  const addBookmark = useAddBookmark();
 
   const saveTask = (e) => {
     e.preventDefault();
@@ -33,6 +34,9 @@ export const AddTaskItem = ({ type }) => {
         break;
       case "contacts":
         addContact(task);
+        break;
+      case "bookmarks":
+        addBookmark(task);
         break;
       default:
         return;
